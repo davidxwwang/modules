@@ -1,0 +1,3 @@
+filters:
+  - com.javastudy.vendor.aopfilter.Filter1
+  - com.javastudy.vendor.aopfilter.Filter2
