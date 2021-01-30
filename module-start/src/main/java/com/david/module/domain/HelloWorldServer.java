@@ -1,10 +1,12 @@
-package com.david.module.proto.helloworld;
+package com.david.module.domain;
 
+import com.david.module.proto.helloworld.HelloReply;
+import com.david.module.proto.helloworld.HelloRequest;
+import com.david.module.proto.helloworld.HelloServiceGrpc;
 import com.google.gson.Gson;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
-import org.springframework.http.converter.json.GsonFactoryBean;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -50,7 +52,7 @@ public class HelloWorldServer {
         helloWorldServer.blockUntilShutdown();
     }
 
-    public static class HelloWorldServerImpl extends HelloServiceGrpc.HelloServiceImplBase{
+    public static class HelloWorldServerImpl extends HelloServiceGrpc.HelloServiceImplBase {
         @Override
         public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
 
@@ -59,6 +61,12 @@ public class HelloWorldServer {
             result.put("ret", "very good");
             result.put("greet", "我回复你了");
             String r  = new Gson().toJson(result, HashMap.class);
+
+//            try {
+//                Thread.sleep(15000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 
             HelloReply reply = HelloReply.newBuilder().setMessage(r).build();
             responseObserver.onNext(reply);

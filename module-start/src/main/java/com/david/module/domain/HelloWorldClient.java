@@ -1,5 +1,8 @@
-package com.david.module.proto.helloworld;
+package com.david.module.domain;
 
+import com.david.module.proto.helloworld.HelloReply;
+import com.david.module.proto.helloworld.HelloRequest;
+import com.david.module.proto.helloworld.HelloServiceGrpc;
 import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
