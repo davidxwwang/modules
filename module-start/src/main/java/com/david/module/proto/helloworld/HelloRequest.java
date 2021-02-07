@@ -59,6 +59,11 @@ private static final long serialVersionUID = 0L;
             name_ = s;
             break;
           }
+          case 17: {
+
+            company_ = input.readDouble();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -94,6 +99,10 @@ private static final long serialVersionUID = 0L;
   public static final int NAME_FIELD_NUMBER = 1;
   private volatile java.lang.Object name_;
   /**
+   * <pre>
+   * 名字
+   * </pre>
+   *
    * <code>string name = 1;</code>
    * @return The name.
    */
@@ -111,6 +120,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * 名字
+   * </pre>
+   *
    * <code>string name = 1;</code>
    * @return The bytes for name.
    */
@@ -127,6 +140,21 @@ private static final long serialVersionUID = 0L;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
+  }
+
+  public static final int COMPANY_FIELD_NUMBER = 2;
+  private double company_;
+  /**
+   * <pre>
+   * 公司
+   * </pre>
+   *
+   * <code>double company = 2;</code>
+   * @return The company.
+   */
+  @java.lang.Override
+  public double getCompany() {
+    return company_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -146,6 +174,9 @@ private static final long serialVersionUID = 0L;
     if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
     }
+    if (company_ != 0D) {
+      output.writeDouble(2, company_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -157,6 +188,10 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (!getNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+    }
+    if (company_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(2, company_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -175,6 +210,9 @@ private static final long serialVersionUID = 0L;
 
     if (!getName()
         .equals(other.getName())) return false;
+    if (java.lang.Double.doubleToLongBits(getCompany())
+        != java.lang.Double.doubleToLongBits(
+            other.getCompany())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -188,6 +226,9 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
+    hash = (37 * hash) + COMPANY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getCompany()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -327,6 +368,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       name_ = "";
 
+      company_ = 0D;
+
       return this;
     }
 
@@ -338,7 +381,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.david.module.proto.helloworld.HelloRequest getDefaultInstanceForType() {
-      return getDefaultInstance();
+      return com.david.module.proto.helloworld.HelloRequest.getDefaultInstance();
     }
 
     @java.lang.Override
@@ -354,6 +397,7 @@ private static final long serialVersionUID = 0L;
     public com.david.module.proto.helloworld.HelloRequest buildPartial() {
       com.david.module.proto.helloworld.HelloRequest result = new com.david.module.proto.helloworld.HelloRequest(this);
       result.name_ = name_;
+      result.company_ = company_;
       onBuilt();
       return result;
     }
@@ -401,10 +445,13 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(com.david.module.proto.helloworld.HelloRequest other) {
-      if (other == getDefaultInstance()) return this;
+      if (other == com.david.module.proto.helloworld.HelloRequest.getDefaultInstance()) return this;
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
         onChanged();
+      }
+      if (other.getCompany() != 0D) {
+        setCompany(other.getCompany());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -437,6 +484,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object name_ = "";
     /**
+     * <pre>
+     * 名字
+     * </pre>
+     *
      * <code>string name = 1;</code>
      * @return The name.
      */
@@ -453,6 +504,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * 名字
+     * </pre>
+     *
      * <code>string name = 1;</code>
      * @return The bytes for name.
      */
@@ -470,6 +525,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * 名字
+     * </pre>
+     *
      * <code>string name = 1;</code>
      * @param value The name to set.
      * @return This builder for chaining.
@@ -485,6 +544,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * 名字
+     * </pre>
+     *
      * <code>string name = 1;</code>
      * @return This builder for chaining.
      */
@@ -495,6 +558,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * 名字
+     * </pre>
+     *
      * <code>string name = 1;</code>
      * @param value The bytes for name to set.
      * @return This builder for chaining.
@@ -507,6 +574,49 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       name_ = value;
+      onChanged();
+      return this;
+    }
+
+    private double company_ ;
+    /**
+     * <pre>
+     * 公司
+     * </pre>
+     *
+     * <code>double company = 2;</code>
+     * @return The company.
+     */
+    @java.lang.Override
+    public double getCompany() {
+      return company_;
+    }
+    /**
+     * <pre>
+     * 公司
+     * </pre>
+     *
+     * <code>double company = 2;</code>
+     * @param value The company to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCompany(double value) {
+      
+      company_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 公司
+     * </pre>
+     *
+     * <code>double company = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCompany() {
+      
+      company_ = 0D;
       onChanged();
       return this;
     }

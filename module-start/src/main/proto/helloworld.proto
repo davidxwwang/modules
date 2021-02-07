@@ -28,10 +28,16 @@ service HelloService {
 
 // The request message containing the user's name.
 message HelloRequest {
+  // 名字
   string name = 1;
+  // 公司
+  double company = 2;
 }
 
 // The response message containing the greetings
 message HelloReply {
+  // 信息
   string message = 1;
+  // 家乡
+  string hometown = 2;
 }

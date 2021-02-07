@@ -8,14 +8,32 @@ public interface HelloRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * 名字
+   * </pre>
+   *
    * <code>string name = 1;</code>
    * @return The name.
    */
   java.lang.String getName();
   /**
+   * <pre>
+   * 名字
+   * </pre>
+   *
    * <code>string name = 1;</code>
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString
       getNameBytes();
+
+  /**
+   * <pre>
+   * 公司
+   * </pre>
+   *
+   * <code>double company = 2;</code>
+   * @return The company.
+   */
+  double getCompany();
 }

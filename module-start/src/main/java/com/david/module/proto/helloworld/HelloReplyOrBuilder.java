@@ -8,14 +8,42 @@ public interface HelloReplyOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * 信息
+   * </pre>
+   *
    * <code>string message = 1;</code>
    * @return The message.
    */
   java.lang.String getMessage();
   /**
+   * <pre>
+   * 信息
+   * </pre>
+   *
    * <code>string message = 1;</code>
    * @return The bytes for message.
    */
   com.google.protobuf.ByteString
       getMessageBytes();
+
+  /**
+   * <pre>
+   * 家乡
+   * </pre>
+   *
+   * <code>string hometown = 2;</code>
+   * @return The hometown.
+   */
+  java.lang.String getHometown();
+  /**
+   * <pre>
+   * 家乡
+   * </pre>
+   *
+   * <code>string hometown = 2;</code>
+   * @return The bytes for hometown.
+   */
+  com.google.protobuf.ByteString
+      getHometownBytes();
 }

@@ -21,6 +21,7 @@ private static final long serialVersionUID = 0L;
   }
   private HelloReply() {
     message_ = "";
+    hometown_ = "";
   }
 
   @java.lang.Override
@@ -59,6 +60,12 @@ private static final long serialVersionUID = 0L;
             message_ = s;
             break;
           }
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            hometown_ = s;
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -94,6 +101,10 @@ private static final long serialVersionUID = 0L;
   public static final int MESSAGE_FIELD_NUMBER = 1;
   private volatile java.lang.Object message_;
   /**
+   * <pre>
+   * 信息
+   * </pre>
+   *
    * <code>string message = 1;</code>
    * @return The message.
    */
@@ -111,6 +122,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * 信息
+   * </pre>
+   *
    * <code>string message = 1;</code>
    * @return The bytes for message.
    */
@@ -123,6 +138,52 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       message_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int HOMETOWN_FIELD_NUMBER = 2;
+  private volatile java.lang.Object hometown_;
+  /**
+   * <pre>
+   * 家乡
+   * </pre>
+   *
+   * <code>string hometown = 2;</code>
+   * @return The hometown.
+   */
+  @java.lang.Override
+  public java.lang.String getHometown() {
+    java.lang.Object ref = hometown_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      hometown_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * 家乡
+   * </pre>
+   *
+   * <code>string hometown = 2;</code>
+   * @return The bytes for hometown.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getHometownBytes() {
+    java.lang.Object ref = hometown_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      hometown_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -146,6 +207,9 @@ private static final long serialVersionUID = 0L;
     if (!getMessageBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
     }
+    if (!getHometownBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, hometown_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -157,6 +221,9 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (!getMessageBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
+    }
+    if (!getHometownBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, hometown_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -175,6 +242,8 @@ private static final long serialVersionUID = 0L;
 
     if (!getMessage()
         .equals(other.getMessage())) return false;
+    if (!getHometown()
+        .equals(other.getHometown())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -188,6 +257,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
     hash = (53 * hash) + getMessage().hashCode();
+    hash = (37 * hash) + HOMETOWN_FIELD_NUMBER;
+    hash = (53 * hash) + getHometown().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -327,6 +398,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       message_ = "";
 
+      hometown_ = "";
+
       return this;
     }
 
@@ -338,7 +411,7 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public com.david.module.proto.helloworld.HelloReply getDefaultInstanceForType() {
-      return getDefaultInstance();
+      return com.david.module.proto.helloworld.HelloReply.getDefaultInstance();
     }
 
     @java.lang.Override
@@ -354,6 +427,7 @@ private static final long serialVersionUID = 0L;
     public com.david.module.proto.helloworld.HelloReply buildPartial() {
       com.david.module.proto.helloworld.HelloReply result = new com.david.module.proto.helloworld.HelloReply(this);
       result.message_ = message_;
+      result.hometown_ = hometown_;
       onBuilt();
       return result;
     }
@@ -401,9 +475,13 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(com.david.module.proto.helloworld.HelloReply other) {
-      if (other == getDefaultInstance()) return this;
+      if (other == com.david.module.proto.helloworld.HelloReply.getDefaultInstance()) return this;
       if (!other.getMessage().isEmpty()) {
         message_ = other.message_;
+        onChanged();
+      }
+      if (!other.getHometown().isEmpty()) {
+        hometown_ = other.hometown_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -437,6 +515,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object message_ = "";
     /**
+     * <pre>
+     * 信息
+     * </pre>
+     *
      * <code>string message = 1;</code>
      * @return The message.
      */
@@ -453,6 +535,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * 信息
+     * </pre>
+     *
      * <code>string message = 1;</code>
      * @return The bytes for message.
      */
@@ -470,6 +556,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * 信息
+     * </pre>
+     *
      * <code>string message = 1;</code>
      * @param value The message to set.
      * @return This builder for chaining.
@@ -485,6 +575,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * 信息
+     * </pre>
+     *
      * <code>string message = 1;</code>
      * @return This builder for chaining.
      */
@@ -495,6 +589,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * 信息
+     * </pre>
+     *
      * <code>string message = 1;</code>
      * @param value The bytes for message to set.
      * @return This builder for chaining.
@@ -507,6 +605,102 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       message_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object hometown_ = "";
+    /**
+     * <pre>
+     * 家乡
+     * </pre>
+     *
+     * <code>string hometown = 2;</code>
+     * @return The hometown.
+     */
+    public java.lang.String getHometown() {
+      java.lang.Object ref = hometown_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        hometown_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * 家乡
+     * </pre>
+     *
+     * <code>string hometown = 2;</code>
+     * @return The bytes for hometown.
+     */
+    public com.google.protobuf.ByteString
+        getHometownBytes() {
+      java.lang.Object ref = hometown_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        hometown_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * 家乡
+     * </pre>
+     *
+     * <code>string hometown = 2;</code>
+     * @param value The hometown to set.
+     * @return This builder for chaining.
+     */
+    public Builder setHometown(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      hometown_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 家乡
+     * </pre>
+     *
+     * <code>string hometown = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearHometown() {
+      
+      hometown_ = getDefaultInstance().getHometown();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 家乡
+     * </pre>
+     *
+     * <code>string hometown = 2;</code>
+     * @param value The bytes for hometown to set.
+     * @return This builder for chaining.
+     */
+    public Builder setHometownBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      hometown_ = value;
       onChanged();
       return this;
     }
