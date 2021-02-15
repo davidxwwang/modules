@@ -21,10 +21,19 @@
 
 
     <dependencies>
+
+        <!-- sub module -->
+        <dependency>
+            <groupId>com.david2</groupId>
+            <artifactId>module-data</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>com.david2</groupId>-->
 <!--            <artifactId>module-util</artifactId>-->
 <!--        </dependency>-->
+
         <!--grpc相关-->
         <dependency>
             <groupId>io.grpc</groupId>
@@ -71,11 +80,11 @@
 
         <!--grpc相关-->
         <!-- https://mvnrepository.com/artifact/io.github.lognet/grpc-spring-boot-starter -->
-        <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-spring-boot-starter</artifactId>
-            <version>2.5.1.RELEASE</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>net.devh</groupId>-->
+<!--            <artifactId>grpc-spring-boot-starter</artifactId>-->
+<!--            <version>2.5.1.RELEASE</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>
@@ -101,6 +110,7 @@
             </extension>
         </extensions>
         <plugins>
+            <!--打jar包用的-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

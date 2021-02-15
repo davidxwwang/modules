@@ -36,16 +36,6 @@ public class set {
 
         hashSet.add(e);
 
-
     }
 
-
-    public static void main(String[] args) {
-
-        testTreeSet();
-
-        testHashSet();
-
-
-    }
 }

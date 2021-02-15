@@ -26,12 +26,4 @@ public class CompareAndSetDemo {
         System.out.print("");
     }
 
-
-    public static void main(String[] args) {
-
-        testAtomicInteger();
-
-
-    }
-
 }
