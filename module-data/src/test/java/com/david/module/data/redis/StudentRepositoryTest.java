@@ -6,10 +6,10 @@ import org.junit.runners.JUnit4;
 
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(JUnit4.class)
-class StudentRepositoryTest {
+public class StudentRepositoryTest {
 
     @Test
-    void testJ(){
+    public void testJ(){
 
     }
 }

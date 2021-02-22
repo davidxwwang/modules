@@ -2,6 +2,8 @@ package com.david.module;
 
 //import com.david.module.util.Person;
 
+import com.david.module.data.mysql.GirlDO;
+import com.david.module.data.mysql.dao.GirlDAO;
 import com.david.module.data.redis.Student;
 import com.david.module.data.redis.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class TestRestController {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private GirlDAO girlDAO;
+
     @RequestMapping("/hello")
     public String helloWord(){
 
@@ -32,6 +37,21 @@ public class TestRestController {
       //  studentRepository.save(student);
       //  Person person = new Person();
         return "hello world: david \n";
+    }
+
+    //  curl 127.0.0.1:8001/mysql
+    @RequestMapping("/mysql")
+    public GirlDO mysql(){
+
+
+        GirlDO girlDO = new GirlDO();
+        girlDO.setAge(20);
+        girlDO.setEmail("xx");
+        girlDO.setUserName("秋香");
+        girlDO.setPassword("root");
+        girlDO.setCupSize("cc");
+       // girlDAO.doInsert(girlDO);
+        return girlDAO.doTest();
     }
 
     @RequestMapping("/redis")

@@ -186,7 +186,7 @@ public class JDBCTest {
 
     @Test
     public void testJDBCMybatis(){
-        String resourcePath = "mybatis/mybatis-config.xml";
+        String resourcePath = "/mybatis/mybatis-config.xml";
         try {
             InputStream inputStream = Resources.getResourceAsStream(resourcePath);
 

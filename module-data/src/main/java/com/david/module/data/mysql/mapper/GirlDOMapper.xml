@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.david.module.data.mysql.mapper.GirlDOMapper">
+  <resultMap id="BaseResultMap" type="com.david.module.data.mysql.GirlDO">
+    <id column="girlid" jdbcType="INTEGER" property="girlid" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="cup_size" jdbcType="VARCHAR" property="cupSize" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    girlid, age, cup_size, email, password, user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from girl
+    where girlid = #{girlid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from girl
+    where girlid = #{girlid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.david.module.data.mysql.GirlDO" useGeneratedKeys="true" keyProperty="girlid">
+    insert into girl (age, cup_size,
+      email, password, user_name
+      )
+    values (#{age,jdbcType=INTEGER}, #{cupSize,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyProperty="girlid" parameterType="com.david.module.data.mysql.GirlDO" useGeneratedKeys="true" >
+    insert into girl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="girlid != null">
+        girlid,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="cupSize != null">
+        cup_size,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="girlid != null">
+        #{girlid,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="cupSize != null">
+        #{cupSize,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.david.module.data.mysql.GirlDO">
+    update girl
+    <set>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="cupSize != null">
+        cup_size = #{cupSize,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where girlid = #{girlid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.david.module.data.mysql.GirlDO">
+    update girl
+    set age = #{age,jdbcType=INTEGER},
+      cup_size = #{cupSize,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where girlid = #{girlid,jdbcType=INTEGER}
+  </update>
+</mapper>

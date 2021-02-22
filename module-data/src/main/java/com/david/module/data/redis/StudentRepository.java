@@ -40,9 +40,20 @@ public class StudentRepository{
 
     public void save(Student student) {
 
-        String resourcePath = "mybatis/mybatis-config.xml";
+        System.out.println(System.getProperty("java.class.path"));//系统的classpaht路径
+        System.out.println(System.getProperty("user.dir"));//用户的当前路径
+
+
+        // todo 一定要搞明白
+        String classPath = this.getClass().getClassLoader().getResource("").getPath();
+        String resourcePath = classPath + "mybatis/mybatis-config.xml";
+      //  String resourcePath = "/Users/david/Desktop/work/clients/module2/module-data/src/main/java/mybatis/mybatis-config.xml";
         try {
-            InputStream inputStream = Resources.getResourceAsStream(resourcePath);
+
+         //   InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("/com/david/module/data/mysql/mybatis-config.xml");
+
+       //     InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("/mybatis/mybatis-config.xml");
+           InputStream inputStream = Resources.getResourceAsStream(resourcePath);
 
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             SqlSession sqlSession = sqlSessionFactory.openSession();

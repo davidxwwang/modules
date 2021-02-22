@@ -70,24 +70,57 @@
     </dependencies>
 
     <build>
-<!--        <plugins>-->
-<!--            &lt;!&ndash;打jar包用的&ndash;&gt;-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-
-        <!--将src/main/java目录下的xml加到target中-->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
-
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>blah</directory>
+                                    <filtering>true</filtering>
+                                    <directory>src/main/java/</directory>
+<!--                                    <includes>-->
+<!--                                        <include>**/*.xml</include>-->
+<!--                                        <include>**/*.db</include>-->
+<!--                                    </includes>-->
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
+
+<!--    <build>-->
+<!--&lt;!&ndash;        <plugins>&ndash;&gt;-->
+<!--&lt;!&ndash;            &lt;!&ndash;打jar包用的&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;                <groupId>org.springframework.boot</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                <artifactId>spring-boot-maven-plugin</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;        </plugins>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;将src/main/java目录下的xml加到target中&ndash;&gt;-->
+<!--        <outputDirectory>${basedir}/target/classes/</outputDirectory>-->
+<!--        <resources>-->
+<!--            <resource>-->
+
+<!--                <directory>src/main/java</directory>-->
+<!--                <includes>-->
+<!--                    <include>**/*.xml</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
+
+<!--    </build>-->
 
 </project>
