@@ -5,6 +5,9 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.redisson.Redisson;
+import org.redisson.api.*;
+import org.redisson.api.stream.StreamAddArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,6 +19,10 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.BaseStream;
 
 
 /**
@@ -30,8 +37,11 @@ public class StudentRepository{
 //    @Autowired  这样会报错的
 //    private RedisTemplate<String, Student> redisTemplate;
 
+//    @Resource
+//    private RedisTemplate<String, Student> redisTemplate;
+
     @Resource
-    private RedisTemplate<String, Student> redisTemplate;
+    private RedissonClient redissonClient;
 
     @PostConstruct
     public void postConstruct(){
@@ -40,45 +50,71 @@ public class StudentRepository{
 
     public void save(Student student) {
 
-        System.out.println(System.getProperty("java.class.path"));//系统的classpaht路径
-        System.out.println(System.getProperty("user.dir"));//用户的当前路径
-
-
-        // todo 一定要搞明白
-        String classPath = this.getClass().getClassLoader().getResource("").getPath();
-        String resourcePath = classPath + "mybatis/mybatis-config.xml";
-      //  String resourcePath = "/Users/david/Desktop/work/clients/module2/module-data/src/main/java/mybatis/mybatis-config.xml";
-        try {
-
-         //   InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("/com/david/module/data/mysql/mybatis-config.xml");
-
-       //     InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("/mybatis/mybatis-config.xml");
-           InputStream inputStream = Resources.getResourceAsStream(resourcePath);
-
-            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-            SqlSession sqlSession = sqlSessionFactory.openSession();
-            System.out.print("\n" + "sqlSession  = " + sqlSession.toString());
-//            GirlDOMapper girlMapper =  sqlSession.getMapper(GirlDOMapper.class);
-//            // int count = girlMapper.getAll();
-
-            sqlSession.close();
-            sqlSession.commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.print("\n" + "IOException  = " + e.toString());
-        }
-
-    Class  c1 = RedisTemplate.class;
-        Class  c2 = redisTemplate.getClass();
-
-        redisTemplate.opsForValue()
-                .set(student.getId(), student);
+//        redisTemplate.opsForValue()
+//                .set(student.getId(), student);
+        RBucket<Object> bucket = redissonClient.getBucket(student.getId());
+        bucket.set(student);
     }
 
     public Student findById(String id) {
-        return redisTemplate.opsForValue()
-                .get(id);
+//        return redisTemplate.opsForValue()
+//                .get(id);
+        RBucket<Object> bucket = redissonClient.getBucket(id);
+        Object o = bucket.get();
+        return (Student) o;
+    }
+
+    public void doTestRedis(){
+
+        // pipeline 与 事务 的差别
+
+
+        // 批量提交 pipeline
+        String setName = "myset";
+        RBatch batch = redissonClient.createBatch();
+        RSetAsync<Object> set = batch.getSet(setName);
+        RFuture<Boolean> booleanRFuture = set.addAsync("david");
+
+        RSetAsync<Object> set2 = batch.getSet(setName);
+        RFuture<Boolean> booleanRFuture2 = set.addAsync("haohao");
+        BatchResult<?> execute = batch.execute();
+        List<?> responses = execute.getResponses();
+//        RSet<Object> set1 = redissonClient.getSet(setName);
+//                set1.toArray();
+        System.out.print(responses.toString() + " ::: " );
+
+
+        // 事务
+        try {
+            RTransaction transaction = redissonClient.createTransaction(TransactionOptions.defaults());
+            RBucket<Integer> myInt = transaction.getBucket(setName);
+            myInt.set(1);
+            myInt.trySetAsync(2);
+
+            transaction.getBucket("msg").set("______this is new String");
+            transaction.commit();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        RBlockingQueue<Object> blockingQueue = redissonClient.getBlockingQueue("");
+        try {
+            blockingQueue.poll(1, );
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+       redissonClient.getRateLimiter().acquire();
+
+        // stream
+//        RStream<Object, Object> mystream = redissonClient.getStream("mystream");
+//
+//        HashMap<String, Object> bizData = new HashMap<>();
+//        bizData.put("msg", "hello haohao");
+//        BaseStream
+//        StreamAddArgs<Object, Object> msg = new BaseStreamAddArgs(bizData);
+//        mystream.addAsync()
+
     }
 
 }

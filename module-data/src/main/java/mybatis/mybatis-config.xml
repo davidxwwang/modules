@@ -4,6 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <environments default="david_env">
+        <environment id="david_env">
+            <transactionManager type="JDBC">
+<!--                <property name="..." value="..."/>-->
+            </transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3307/david?user=root&amp;password=root3?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
     <!--<typeAliases>-->
         <!--<typeAlias alias="Integer" type="java.lang.Integer"/>-->
         <!--<typeAlias alias="Long" type="java.lang.Long"/>-->
@@ -12,8 +26,8 @@
         <!--<typeAlias alias="ArrayList" type="java.util.ArrayList"/>-->
         <!--<typeAlias alias="LinkedList" type="java.util.LinkedList"/>-->
     <!--</typeAliases>-->
-<!--    <mappers>-->
-<!--        <mapper class="com.david.study.data.mysql.mapper.GirlMapper"></mapper>-->
-<!--        <mapper resource="com/david/studyspring/storage/mysql/mapper/GirlMapper.xml"></mapper>-->
-<!--    </mappers>-->
+    <mappers>
+        <mapper class="com.david.module.data.mysql.mapper.GirlDOMapper"></mapper>
+        <mapper resource="com/david/module/data/mysql/mapper/GirlDOMapper.xml"></mapper>
+    </mappers>
 </configuration>

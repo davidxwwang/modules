@@ -13,6 +13,9 @@ public class MybatisConfig {
             @Override
             public void customize(org.apache.ibatis.session.Configuration configuration) {
                 configuration.setMapUnderscoreToCamelCase(false);
+                configuration.setUseGeneratedKeys(true);
+             //   configuration.setProxyFactory();
+                configuration.setObjectFactory(new DavidMybatisObjectFactory());
             }
         };
     }

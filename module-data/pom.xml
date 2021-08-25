@@ -12,6 +12,13 @@
     <artifactId>module-data</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.15.6</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -72,6 +79,10 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
@@ -87,10 +98,10 @@
                                     <directory>blah</directory>
                                     <filtering>true</filtering>
                                     <directory>src/main/java/</directory>
-<!--                                    <includes>-->
-<!--                                        <include>**/*.xml</include>-->
-<!--                                        <include>**/*.db</include>-->
-<!--                                    </includes>-->
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                        <include>**/*.db</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>

@@ -1,5 +1,6 @@
 package com.david.module.data.mysql.config;
 
+import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
@@ -13,6 +14,8 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.alibaba.druid.support.http.ResourceServlet.*;
 
 @Configuration
 public class DruidConfig {
@@ -31,9 +34,9 @@ public class DruidConfig {
         Map<String, String> map = new HashMap<>();
 
         // 在com.alibaba.druid.support.http.ResourceServlet中可以找到相关设置的key
-        map.put("loginUsername","root");
-        map.put("loginPassword","438444w");
-        map.put("allow",""); // 容许所有
+        map.put(PARAM_NAME_USERNAME,"root");
+        map.put(PARAM_NAME_PASSWORD,"438444w");
+        map.put(PARAM_NAME_ALLOW,""); // 容许所有
         // map.put("deny","");
         bean.setInitParameters(map);
         return bean;
