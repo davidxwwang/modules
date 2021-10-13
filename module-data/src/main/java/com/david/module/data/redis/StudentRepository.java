@@ -97,14 +97,6 @@ public class StudentRepository{
             ex.printStackTrace();
         }
 
-        RBlockingQueue<Object> blockingQueue = redissonClient.getBlockingQueue("");
-        try {
-            blockingQueue.poll(1, );
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-       redissonClient.getRateLimiter().acquire();
 
         // stream
 //        RStream<Object, Object> mystream = redissonClient.getStream("mystream");

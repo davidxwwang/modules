@@ -11,6 +11,10 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.PostConstruct;
+import java.net.Socket;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.*;
+import java.util.concurrent.Future;
 
 @Slf4j
 @Configuration
@@ -40,6 +44,7 @@ public class RedisConfiguration {
 
     @Bean
     public RedissonClient redissonClient(){
+
         Config config = new Config();
         config.useSingleServer().setAddress("redis://127.0.0.1:6380");
                 // use "rediss://" for SSL connection
