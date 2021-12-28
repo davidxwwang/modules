@@ -29,6 +29,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>com.david2</groupId>-->
 <!--            <artifactId>module-util</artifactId>-->
@@ -121,7 +126,8 @@
             </extension>
         </extensions>
         <plugins>
-            <!--打jar包用的-->
+            <!--一定要使用spring-boot-maven-plugin，不然就会打出普通的jar，而不是可执行jar。-->
+<!--            module-data要使用maven-compiler-plugin，否则会出现找不到符号的问题-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

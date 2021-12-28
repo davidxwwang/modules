@@ -126,12 +126,13 @@
 
 	</dependencies>
 
-	<!--mvn deploy部署配置-->
+	<!--mvn deploy发布部署配置-->
 	<distributionManagement>
 		<repository>
 			<id>local-repo-release</id>
 			<name>GitHub Release</name>
 			<url>file://${project.basedir}/maven-repo</url>
+
 		</repository>
 	</distributionManagement>
 
@@ -144,6 +145,20 @@
 				<artifactId>module-util</artifactId>
 				<version>${module.util.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.david2</groupId>
+				<artifactId>module-data</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<!-- Provide the latest stable Spring Cloud release train version (e.g. 2020.0.0) -->
+				<version>2020.0.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>
@@ -151,7 +166,7 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>src/main/java/</directory>
+				<directory>${project.basedir}/src/main/java/</directory>
 				<filtering>true</filtering>
 				<includes>
 					<include>**/*.xml</include>

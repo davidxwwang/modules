@@ -3,12 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>module</artifactId>
         <groupId>com.david2</groupId>
+        <artifactId>module</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
     <artifactId>module-data</artifactId>
 
     <dependencies>
@@ -78,9 +79,17 @@
 
     <build>
         <plugins>
+<!--            于spring-boot-maven-plugin生成的jar是fat jar，它的内部结构和maven-compiler-plugin生成的并不一样，classpath路径也不一样，所以如果一个项目是使用spring-boot-maven-plugin打的包，那么这个jar作为依赖包引入到其他项目中时，并不会像普通jar一样，可以在父项目中使用类路径找到某个类。-->
+<!--            用大白话说就是，如果你的某个项目是要作为jar包依赖到其他项目中使用时，请不要使用spring-boot-maven-plugin(使用maven-compiler-plugin)，因为这样会让你的jar包内部结构变得与你想象的不一样。-->
+<!--            原文链接：https://blog.csdn.net/qq_36636154/article/details/109060638-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+<!--                    这个注释一定要加上，否则报 找不到符号-->
+                    <classifier>exec</classifier>
+                    <mainClass>com.david.module.ModuleApplication</mainClass>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
