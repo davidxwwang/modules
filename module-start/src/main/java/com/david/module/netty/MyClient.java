@@ -20,7 +20,7 @@ import io.netty.util.concurrent.Future;
 public class MyClient {
 
     public static void main(String[] args) throws Exception {
-        HttpResponseEncoder
+
         NioEventLoopGroup group = new NioEventLoopGroup();
         Bootstrap b = new Bootstrap();
         b.group(group)

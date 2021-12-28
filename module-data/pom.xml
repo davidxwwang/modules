@@ -92,11 +92,12 @@
                 </configuration>
             </plugin>
             <plugin>
+<!--                copy资源，见https://maven.apache.org/plugins/maven-resources-plugin/examples/resourcece-directory.html-->
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>validate</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -106,11 +107,17 @@
                                 <resource>
                                     <directory>blah</directory>
                                     <filtering>true</filtering>
-                                    <directory>src/main/java/</directory>
+                                    <directory>src/main/java/cc</directory>
                                     <includes>
                                         <include>**/*.xml</include>
                                         <include>**/*.db</include>
                                     </includes>
+<!--                                    <excludes>-->
+<!--                                        <exclude>**/*.db</exclude>-->
+<!--                                    </excludes>-->
+                                </resource>
+                                <resource>
+                                    <directory>src/resources</directory>
                                 </resource>
                             </resources>
                         </configuration>
@@ -119,28 +126,5 @@
             </plugin>
         </plugins>
     </build>
-
-<!--    <build>-->
-<!--&lt;!&ndash;        <plugins>&ndash;&gt;-->
-<!--&lt;!&ndash;            &lt;!&ndash;打jar包用的&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
-<!--&lt;!&ndash;                <groupId>org.springframework.boot</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;                <artifactId>spring-boot-maven-plugin</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
-<!--&lt;!&ndash;        </plugins>&ndash;&gt;-->
-
-<!--        &lt;!&ndash;将src/main/java目录下的xml加到target中&ndash;&gt;-->
-<!--        <outputDirectory>${basedir}/target/classes/</outputDirectory>-->
-<!--        <resources>-->
-<!--            <resource>-->
-
-<!--                <directory>src/main/java</directory>-->
-<!--                <includes>-->
-<!--                    <include>**/*.xml</include>-->
-<!--                </includes>-->
-<!--            </resource>-->
-<!--        </resources>-->
-
-<!--    </build>-->
 
 </project>
