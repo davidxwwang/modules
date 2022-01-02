@@ -18,7 +18,7 @@
 	<description>david test</description>
 
 	<modules>
-<!--		<module>module-util</module>-->
+		<module>module-util</module>
 		<module>module-start</module>
 		<module>module-data</module>
 		<module>cloud</module>
@@ -166,6 +166,7 @@
 	<build>
 		<resources>
 			<resource>
+<!--				标识资源的位置-->
 				<directory>${project.basedir}/src/main/java/</directory>
 				<filtering>true</filtering>
 				<includes>
