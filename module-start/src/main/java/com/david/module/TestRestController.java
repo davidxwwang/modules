@@ -26,7 +26,10 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -54,9 +57,18 @@ public class TestRestController {
         return "hello world: david \n";
     }
 
-    //  curl 127.0.0.1:8001/mysql
+    //  curl 127.0.0.1:8100/mysql/insert
     @RequestMapping("/mysql/insert")
     public Integer insertMysql(){
+        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+
+        try {
+            Class<?> aClass = Class.forName("com.david.module.TestRestController");
+            Class.forName("x");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         System.out.println(System.getProperty("java.class.path"));//系统的classpaht路径
         System.out.println(System.getProperty("user.dir"));//用户的当前路径
@@ -134,11 +146,24 @@ public class TestRestController {
         //  Person person = new Person();
         return student1.toString();
     }
+    // curl 127.0.0.1:8100/classpath
+    @RequestMapping("/classpath")
+    public void printClasspath(){
+        String bootStrapLoadingPath = System.getProperty("sun.boot.class.path");
+        List<String> bootStrapLoadingPathList = Arrays.asList(bootStrapLoadingPath.split(":"));
+
+        String extLoadingPath = System.getProperty("java.ext.dirs");
+        List<String> extLoadingPathList = Arrays.asList(extLoadingPath.split(":"));
+
+        String appLoadingPath = System.getProperty("java.class.path");
+        List<String> appLoadingPathList = Arrays.asList(appLoadingPath.split(":"));
+
+        log.info("" );
+    }
 
     //  curl 127.0.0.1:8001/dotestredis
     @RequestMapping("/dotestredis")
     public void dotestredis(){
-
         studentRepository.doTestRedis();
     }
 
